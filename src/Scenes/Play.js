@@ -7,15 +7,24 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load all image files here
-        this.load.image('background', './Assets/ER-Background.png');
+        this.load.image('background_back', './Assets/backgrounds/endlessRunnerBackgroundBack.png');
+        this.load.image('background_middle', './Assets/backgrounds/endlessRunnerBackgroundMiddle.png');
+        this.load.image('background_front', './Assets/backgrounds/endlessRunnerBackgroundFront.png');
         this.load.image('player', './Assets/ER-Player.png');
         this.load.image('badguy', './Assets/ER-BadGuy.png');
         this.load.image('car', './Assets/ER-AmogusCar.png');
+
+        // load audio
+        this.load.audio('jump_sfx', './Assets/sounds/endlessRunner_Jump.wav');
+        this.load.audio('hit_sfx', './Assets/sounds/endlessRunner_Hit.wav');
     }
 
     create() { 
         // background
-        this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
+        this.background1 = this.add.tileSprite(0, 0, 1280, 720, 'background_back').setOrigin(0, 0);
+        this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
+        this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
+
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player');
 
         // configure input
@@ -60,6 +69,11 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        //background scrolling
+        this.background1.tilePositionX += 2;
+        this.background2.tilePositionX += 4;
+        this.background3.tilePositionX += 6;
+
         // check key input for restart 
         if (this.gameOver) {
             let endConfig = {
