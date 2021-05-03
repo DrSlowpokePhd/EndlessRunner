@@ -17,9 +17,16 @@ class Play extends Phaser.Scene {
         // load audio
         this.load.audio('jump_sfx', './Assets/sounds/endlessRunner_Jump.wav');
         this.load.audio('hit_sfx', './Assets/sounds/endlessRunner_Hit.wav');
+        this.load.audio('background_music', './Assets/sounds/endlessRunner_Music.wav');
     }
 
     create() { 
+        //add music
+        if(bgMusic == undefined) //prevent duplication
+        {
+            bgMusic = this.sound.add('background_music');
+        }
+
         // background
         this.background1 = this.add.tileSprite(0, 0, 1280, 720, 'background_back').setOrigin(0, 0);
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
@@ -69,6 +76,12 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+         //check if music is playing
+         if(!bgMusic.isPlaying)
+         {
+             bgMusic.play();
+         }
+
         //background scrolling
         this.background1.tilePositionX += 2;
         this.background2.tilePositionX += 4;
