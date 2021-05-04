@@ -14,6 +14,7 @@ class Pigeon extends Phaser.GameObjects.Sprite {
         if(this.x >= game.config.width + this.width) {
             this.x = 0 - 50;
         }
+        // TODO: Implement spawning multiple pigeons at different heights instead of just resetting the 1
     }
 
     moveSpeedFast() {
