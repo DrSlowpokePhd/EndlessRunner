@@ -5,9 +5,14 @@ class Menu extends Phaser.Scene {
 
     preload() {
         // load audio
+        this.load.audio('sfx_select','./Assets/sounds/endlessRunner_Select.wav');
 
+        //load image
+        this.load.image('background_title', './Assets/backgrounds/endlessRunnerTitle.png');
     }
     create() { 
+        this.background = this.add.tileSprite(0, 0, 1280, 720, 'background_title').setOrigin(0, 0);
+
         let menuConfig = {
             fontFamily: 'Arial',
             fontSize: '28px',
@@ -30,6 +35,7 @@ class Menu extends Phaser.Scene {
     }
     update() {
   	    if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.sound.play('sfx_select');
   	        this.scene.start('playScene');
   	    }
     }
