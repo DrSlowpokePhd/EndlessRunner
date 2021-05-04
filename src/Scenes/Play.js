@@ -30,9 +30,7 @@ class Play extends Phaser.Scene {
         // spritesheets for the characters
         this.load.spritesheet('baker_run', 'assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
         this.load.spritesheet('pigeon_fly', 'assets/character_sprites/pigeon_sprite.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
-    }
-
-    create() { 
+            
         // load audio
         this.load.audio('jump_sfx', './Assets/sounds/endlessRunner_Jump.wav');
         this.load.audio('hit_sfx', './Assets/sounds/endlessRunner_Hit.wav');
@@ -155,7 +153,7 @@ class Play extends Phaser.Scene {
         });
 
         //Play animations
-        this.vehicle1.anims.play('driving1'); //animations don't play yet
+        //this.vehicle1.anims.play('driving1'); //animations don't play yet
     }
 
     playerExplode(player) {
