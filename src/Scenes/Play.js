@@ -33,10 +33,6 @@ class Play extends Phaser.Scene {
     }
 
     create() { 
-        //new cars added here
-        this.vehicle1 = new Car (
-            this, 100, 200, 'vehicle1_blue'
-        );
         // load audio
         this.load.audio('jump_sfx', './Assets/sounds/endlessRunner_Jump.wav');
         this.load.audio('hit_sfx', './Assets/sounds/endlessRunner_Hit.wav');
@@ -44,6 +40,7 @@ class Play extends Phaser.Scene {
     }
 
     create() { 
+
         //add music
         if(bgMusic == undefined) //prevent duplication
         {
@@ -92,6 +89,73 @@ class Play extends Phaser.Scene {
                 this.score += 1;
             },
         });
+
+        //animation configuration
+        this.anims.create({
+            key: 'driving1',
+            frames: this.anims.generateFrameNumbers('vehicle1_blue', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving2',
+            frames: this.anims.generateFrameNumbers('vehicle1_green', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving3',
+            frames: this.anims.generateFrameNumbers('vehicle1_red', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving4',
+            frames: this.anims.generateFrameNumbers('vehicle2_blue', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving5',
+            frames: this.anims.generateFrameNumbers('vehicle2_purple', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving6',
+            frames: this.anims.generateFrameNumbers('vehicle2_white', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving7',
+            frames: this.anims.generateFrameNumbers('rig_green', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving8',
+            frames: this.anims.generateFrameNumbers('rig_red', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: 'driving9',
+            frames: this.anims.generateFrameNumbers('rig_yellow', {start: 0, end: 2, first: 0}),
+            frameRate: 30,
+            repeat: -1,
+        });
+
+        //Play animations
+        this.vehicle1.anims.play('driving1'); //animations don't play yet
     }
 
     playerExplode(player) {
