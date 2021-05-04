@@ -5,8 +5,13 @@ class Car extends Phaser.Physics.Arcade.Sprite  {
         this.yLevel = y;
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        this.onWorldBounds = true;
+        // this.onWorldBounds = true;
+        // this line of code isn't actually doing anything
+        // I think the onWorldBounds is an event, not something that modifies a property
         this.setCollideWorldBounds(true);
+        // TODO: change this.setCollideWorldBounds(true) to something else that makes cars only
+        //       collide with the floor instead of all bounds
+
     }
 
     update() {
