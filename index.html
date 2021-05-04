@@ -3,13 +3,39 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>Endless Runner Prototype</title>       
+        <title>Endless Runner Prototype</title>
+
+        <!--loads fonts, courtesy of https://stackoverflow.com/questions/51217147/how-to-use-a-local-font-in-phaser-3-->
+        <style media='screen' type='text/css'>
+            @font-face {
+              font-family: Bread and Circus;
+              src: url('fonts/bread_and_circus.ttf');
+              font-weight:400;
+              font-weight:normal;
+            }
+        </style>
+        <style media='screen' type='text/css'>
+            @font-face {
+              font-family: Bread Rough;
+              src: url('fonts/bread_rough.ttf');
+              font-weight:400;
+              font-weight:normal;
+            }
+      </style>
     </head>
     <body>
+        <!--loads fonts, courtesy of https://stackoverflow.com/questions/51217147/how-to-use-a-local-font-in-phaser-3-->
+        <div style="font-family:'Bread and Circus'; position:absolute; left:-1000px; visibility:hidden;">.</div>
+        <div style="font-family:'Bread Rough'; position:absolute; left:-1000px; visibility:hidden;">.</div>
+
         <script src="lib/phaser.js" charset="utf-8"></script>
         <script src="src/Prefabs/Car.js" charset="utf-8"></script>
         <script src="src/Prefabs/Player.js" charset="utf-8"></script>
+<<<<<<< HEAD
         <script src="src/Prefabs/Pigeon.js" charset="utf-8"></script>
+=======
+        <script src="src/Scenes/Title.js" charset="utf-8"></script>
+>>>>>>> b8664db4cc25420644c3597b47e521592ae9c591
         <script src="src/Scenes/Menu.js" charset="utf-8"></script>
         <script src="src/Scenes/Play.js" charset="utf-8"></script>
         <script src="src/main.js" charset="utf-8"></script>

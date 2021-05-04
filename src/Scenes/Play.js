@@ -62,7 +62,7 @@ class Play extends Phaser.Scene {
         this.anims.create({
             key: 'driving1',
             frames: this.anims.generateFrameNumbers('vehicle1_blue', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
@@ -122,6 +122,25 @@ class Play extends Phaser.Scene {
             repeat: -1,
         });
         
+        // array of vehicle heights
+        this.vehicleHeightArray = new Array(140, 140, 300);
+
+        // array of animations
+
+        // arrays of textures
+        this.vehicle1Array = new Array('vehicle1_blue','vehicle1_green','vehicle1_red');
+        this.vehicle1AnimArray = new Array('driving1','driving2','driving3');
+
+        this.vehicle2Array = new Array('vehicle2_blue','vehicle2_purple','vehicle2_white');
+        this.vehicle2AnimArray = new Array('driving4','driving5','driving6');
+
+        this.vehicle3Array = new Array('rig_green','rig_red','rig_yellow');
+        this.vehicle3AnimArray = new Array('driving7','driving8','driving9');
+
+        // array of which vehicle
+        this.vehicleType = new Array(this.vehicle1Array, this.vehicle2Array, this.vehicle3Array);
+        this.vehicleTypeAnim = new Array(this.vehicle1AnimArray, this.vehicle2AnimArray, this.vehicle3AnimArray);
+
         // array of cars
         this.cars = [];
 
@@ -141,11 +160,22 @@ class Play extends Phaser.Scene {
         let timer = this.time.addEvent({
             delay: 1000,
             callback: () => {
-                let newcar = new Car(this, game.config.width, game.config.height - 70, 'vehicle1_blue').setOrigin(0, 0);
+                //Find which type of vehicle
+                //Random number for type of vehicle
+                this.randomInt = Math.floor(Math.random() * this.vehicleType.length);
+
+                //Random number for the color of vehicle
+                this.randomInt2 = Math.floor(Math.random() * this.vehicleType.length);
+
+                //Number for height of vehicle sprite
+                this.heightNum = this.vehicleHeightArray[this.randomInt];
+
+                //create car
+                let newcar = new Car(this, game.config.width, game.config.height - this.heightNum, this.vehicleType[this.randomInt][this.randomInt2]).setOrigin(0, 0);
                 this.add.existing(newcar);
                 
                 //Play animations
-                newcar.anims.play('driving1'); //animations don't play yet
+                newcar.anims.play(this.vehicleTypeAnim[this.randomInt][this.randomInt2]); //animations don't play yet
 
                 this.cars.push(newcar);
             }, 
