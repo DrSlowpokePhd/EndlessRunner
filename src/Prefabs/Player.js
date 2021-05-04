@@ -8,7 +8,7 @@
 class Player extends Phaser.Physics.Arcade.Sprite {
     constructor (scene, x, y, texture, frame) {
         super (scene, x, y, texture, frame);
-        this.jumpStep = 1300; // change in height measured in ppt (pixels per tick)
+        this.jumpStep = 850; // change in height measured in ppt (pixels per tick)
         this.inAir = true;
         this.isFalling = true;
         this.isJumping = false;

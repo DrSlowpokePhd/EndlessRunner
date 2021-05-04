@@ -55,39 +55,6 @@ class Play extends Phaser.Scene {
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
 
-        // array of cars
-        this.cars = [];
-
-        // collider between player and world boundaries
-        this.physics.world.on('worldbounds', (body) => {
-            console.log ("worldbounds" + body);
-        });
-
-        // debug text
-        if (this.debug) {
-            this.playerPosText = this.add.text(0, 0, ' ');
-            this.playerIsJump = this.add.text(0, this.playerPosText.height, ' ');
-            this.airText = this.add.text(0, this.playerPosText.height * 2, ' ');
-            this.jRelease = this.add.text(0, this.playerPosText.height * 3, ' ');
-        }
-
-        let timer = this.time.addEvent({
-            delay: 1000,
-            callback: () => {
-                let newcar = new Car(this, game.config.width, game.config.height - 70, 'car').setOrigin(0, 0);
-                this.add.existing(newcar);
-                this.cars.push(newcar);
-            }, 
-            loop: true
-        });
-
-        let scoretimer = this.time.addEvent({
-            delay: 100,
-            callback: () => {
-                this.score += 1;
-            },
-        });
-
         //animation configuration
         this.anims.create({
             key: 'driving1',
@@ -151,9 +118,43 @@ class Play extends Phaser.Scene {
             frameRate: 30,
             repeat: -1,
         });
+        
+        // array of cars
+        this.cars = [];
 
-        //Play animations
-        //this.vehicle1.anims.play('driving1'); //animations don't play yet
+        // collider between player and world boundaries
+        this.physics.world.on('worldbounds', (body) => {
+            console.log ("worldbounds" + body);
+        });
+
+        // debug text
+        if (this.debug) {
+            this.playerPosText = this.add.text(0, 0, ' ');
+            this.playerIsJump = this.add.text(0, this.playerPosText.height, ' ');
+            this.airText = this.add.text(0, this.playerPosText.height * 2, ' ');
+            this.jRelease = this.add.text(0, this.playerPosText.height * 3, ' ');
+        }
+
+        let timer = this.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                let newcar = new Car(this, game.config.width, game.config.height - 70, 'vehicle1_blue').setOrigin(0, 0);
+                this.add.existing(newcar);
+                
+                //Play animations
+                newcar.anims.play('driving1'); //animations don't play yet
+
+                this.cars.push(newcar);
+            }, 
+            loop: true
+        });
+
+        let scoretimer = this.time.addEvent({
+            delay: 100,
+            callback: () => {
+                this.score += 1;
+            },
+        });
     }
 
     playerExplode(player) {
