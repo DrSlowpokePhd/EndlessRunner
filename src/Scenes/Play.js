@@ -138,7 +138,7 @@ class Play extends Phaser.Scene {
         let timer = this.time.addEvent({
             delay: 1000,
             callback: () => {
-                let newcar = new Car(this, game.config.width, game.config.height - 70, 'vehicle1_blue').setOrigin(0, 0);
+                let newcar = new Car(this, game.config.width, game.config.height - 140, 'vehicle1_blue').setOrigin(0, 0);
                 this.add.existing(newcar);
                 
                 //Play animations
