@@ -69,58 +69,71 @@ class Play extends Phaser.Scene {
         this.anims.create({
             key: 'driving2',
             frames: this.anims.generateFrameNumbers('vehicle1_green', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving3',
             frames: this.anims.generateFrameNumbers('vehicle1_red', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving4',
             frames: this.anims.generateFrameNumbers('vehicle2_blue', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving5',
             frames: this.anims.generateFrameNumbers('vehicle2_purple', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving6',
             frames: this.anims.generateFrameNumbers('vehicle2_white', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving7',
             frames: this.anims.generateFrameNumbers('rig_green', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving8',
             frames: this.anims.generateFrameNumbers('rig_red', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
 
         this.anims.create({
             key: 'driving9',
             frames: this.anims.generateFrameNumbers('rig_yellow', {start: 0, end: 2, first: 0}),
-            frameRate: 30,
+            frameRate: 12,
             repeat: -1,
         });
+
+        this.anims.create({
+            key: 'flying',
+            frames: this.anims.generateFrameNumbers('pigeon_fly', {start: 0, end: 1, first: 0}), 
+            framerate: 2, 
+            repeat: -1,
+        });
+
+        this.pigeon1.anims.play('flying');
+
+
+
+
         
         // array of vehicle heights
         this.vehicleHeightArray = new Array(140, 140, 300);
