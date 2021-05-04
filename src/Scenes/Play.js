@@ -11,9 +11,31 @@ class Play extends Phaser.Scene {
         this.load.image('player', './Assets/ER-Player.png');
         this.load.image('badguy', './Assets/ER-BadGuy.png');
         this.load.image('car', './Assets/ER-AmogusCar.png');
+
+        // load all spritesheet files here for vehicles
+        this.load.spritesheet('vehicle1_blue', 'assets/vehicle_assets/vehicle1_blue.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle1_green', 'assets/vehicle_assets/vehicle1_green.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle1_red', 'assets/vehicle_assets/vehicle1_red.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
+
+        this.load.spritesheet('vehicle2_blue', 'assets/vehicle_assets/vehicle2_blue.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle2_purple', 'assets/vehicle_assets/vehicle2_purple.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle2_white', 'assets/vehicle_assets/vehicle2_white.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
+
+        this.load.spritesheet('rig_green', 'assets/vehicle_assets/bigrig_green.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('rig_red', 'assets/vehicle_assets/bigrig_red.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('rig_yellow', 'assets/vehicle_assets/bigrig_yellow.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
+
+        // spritesheets for the characters
+        this.load.spritesheet('baker_run', 'assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('pigeon_fly', 'assets/character_sprites/pigeon_sprite.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
     }
 
     create() { 
+        //new cars added here
+        this.vehicle1 = new Car (
+            this, 100, 200, 'vehicle1_blue'
+        );
+
         // background
         this.background = this.add.tileSprite(0, 0, 640, 480, 'background').setOrigin(0, 0);
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player');
