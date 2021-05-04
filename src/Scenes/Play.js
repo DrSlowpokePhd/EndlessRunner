@@ -119,9 +119,18 @@ class Play extends Phaser.Scene {
             repeat: -1,
         });
         
+        // array of vehicle heights
+        this.vehicleHeightArray = new Array(140, 140, 300);
+
         // array of animations
         this.vehicle1Array = new Array('vehicle1_blue','vehicle1_green','vehicle1_red');
         this.vehicle1AnimArray = new Array('driving1','driving2','driving3');
+
+        this.vehicle2Array = new Array('vehicle2_blue','vehicle3_purple','vehicle2_white');
+        this.vehicle2AnimArray = new Array('driving4','driving5','driving6');
+
+        // this.vehicle3Array = new Array('vehicle2_blue','vehicle3_purple','vehicle2_white');
+        // this.vehicle3AnimArray = new Array('driving4','driving5','driving6');
 
         // array of cars
         this.cars = [];
@@ -143,8 +152,8 @@ class Play extends Phaser.Scene {
             delay: 1000,
             callback: () => {
                 this.randomInt = Math.floor(Math.random() * this.vehicle1Array.length);
-
-                let newcar = new Car(this, game.config.width, game.config.height - 140, this.vehicle1Array[this.randomInt]).setOrigin(0, 0);
+                this.heightNum = this.vehicleHeightArray[this.randomInt];
+                let newcar = new Car(this, game.config.width, game.config.height - this.heightNum, this.vehicle1Array[this.randomInt]).setOrigin(0, 0);
                 this.add.existing(newcar);
                 
                 //Play animations
