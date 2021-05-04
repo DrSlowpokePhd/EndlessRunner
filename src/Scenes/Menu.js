@@ -7,8 +7,6 @@ class Menu extends Phaser.Scene {
         // load audio
         this.load.audio('sfx_select','./Assets/sounds/endlessRunner_Select.wav');
 
-        //load image
-        this.load.image('background_title', './Assets/backgrounds/endlessRunnerTitle.png');
     }
     create() { 
         this.background = this.add.tileSprite(0, 0, 1280, 720, 'background_title').setOrigin(0, 0);

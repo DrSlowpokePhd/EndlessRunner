@@ -21,5 +21,4 @@ class Pigeon extends Phaser.GameObjects.Sprite {
     }
 
     //all code here was borrowed from the Rocket Patrol Tutorial
-
 }
