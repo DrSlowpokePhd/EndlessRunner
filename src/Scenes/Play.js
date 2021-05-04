@@ -119,6 +119,10 @@ class Play extends Phaser.Scene {
             repeat: -1,
         });
         
+        // array of animations
+        this.vehicle1Array = new Array('vehicle1_blue','vehicle1_green','vehicle1_red');
+        this.vehicle1AnimArray = new Array('driving1','driving2','driving3');
+
         // array of cars
         this.cars = [];
 
@@ -138,11 +142,13 @@ class Play extends Phaser.Scene {
         let timer = this.time.addEvent({
             delay: 1000,
             callback: () => {
-                let newcar = new Car(this, game.config.width, game.config.height - 140, 'vehicle1_blue').setOrigin(0, 0);
+                this.randomInt = Math.floor(Math.random() * this.vehicle1Array.length);
+
+                let newcar = new Car(this, game.config.width, game.config.height - 140, this.vehicle1Array[this.randomInt]).setOrigin(0, 0);
                 this.add.existing(newcar);
                 
                 //Play animations
-                newcar.anims.play('driving1'); //animations don't play yet
+                newcar.anims.play(this.vehicle1AnimArray[this.randomInt]); //animations don't play yet
 
                 this.cars.push(newcar);
             }, 
