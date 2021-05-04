@@ -129,6 +129,7 @@ class Play extends Phaser.Scene {
             repeat: -1,
         });
 
+        //play pigeon animation
         this.pigeon1.anims.play('flying');
 
 
@@ -188,7 +189,7 @@ class Play extends Phaser.Scene {
                 this.add.existing(newcar);
                 
                 //Play animations
-                newcar.anims.play(this.vehicleTypeAnim[this.randomInt][this.randomInt2]); //animations don't play yet
+                newcar.anims.play(this.vehicleTypeAnim[this.randomInt][this.randomInt2]);
 
                 this.cars.push(newcar);
             }, 
