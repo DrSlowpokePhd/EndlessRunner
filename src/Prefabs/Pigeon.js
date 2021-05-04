@@ -7,8 +7,8 @@ class Pigeon extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        //birds move left
-        this.x -= this.moveSpeed;
+        //birds move right
+        this.x += this.moveSpeed;
 
         //if bird hits end of screen, reset to other side
         if(this.x <= 0 - this.width) {

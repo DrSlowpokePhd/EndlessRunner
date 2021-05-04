@@ -132,10 +132,6 @@ class Play extends Phaser.Scene {
         //play pigeon animation
         this.pigeon1.anims.play('flying');
 
-
-
-
-        
         // array of vehicle heights
         this.vehicleHeightArray = new Array(140, 140, 300);
 
