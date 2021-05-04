@@ -2,7 +2,7 @@ let config = {
     type: Phaser.CANVAS,
     width: 1280,
     height: 720,
-    scene: [Title, Play],
+    scene: [Title, Menu, Play],
     physics: {
         default: "arcade",
         arcade: {

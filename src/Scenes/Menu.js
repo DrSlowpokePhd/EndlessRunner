@@ -1,6 +1,6 @@
-class Title extends Phaser.Scene {
+class Menu extends Phaser.Scene {
     constructor() {
-        super("titleScene");
+        super("menuScene");
     }
 
     preload() {
@@ -13,7 +13,7 @@ class Title extends Phaser.Scene {
     create() { 
         this.background = this.add.tileSprite(0, 0, 1280, 720, 'background_title').setOrigin(0, 0);
 
-        let titleConfig = {
+        let menuConfig = {
             fontFamily: 'Arial',
             fontSize: '28px',
             backgroundColor: '#F3B141',
@@ -27,8 +27,8 @@ class Title extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'Endless Runner Prototype', titleConfig).setOrigin(0.5);
-        this.add.text(game.config.width/2, game.config.height/2, 'Press SPACE to start.', titleConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - borderUISize - borderPadding, 'This is the menu scene', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2, 'Press SPACE to start.', menuConfig).setOrigin(0.5);
 	
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     	
@@ -36,7 +36,7 @@ class Title extends Phaser.Scene {
     update() {
   	    if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.sound.play('sfx_select');
-  	        this.scene.start('menuScene');
+  	        this.scene.start('playScene');
   	    }
     }
 }
