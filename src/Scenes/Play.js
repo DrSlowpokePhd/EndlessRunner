@@ -52,6 +52,9 @@ class Play extends Phaser.Scene {
 
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player');
 
+        //load pigeon sprites
+        this.pigeon1 = new Pigeon (this, 100, 200, 'pigeon_fly');
+
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
 
@@ -172,6 +175,8 @@ class Play extends Phaser.Scene {
         this.background1.tilePositionX += 2;
         this.background2.tilePositionX += 4;
         this.background3.tilePositionX += 6;
+
+        this.pigeon1.update();
 
         // check key input for restart 
         if (this.gameOver) {
