@@ -269,8 +269,9 @@ class Play extends Phaser.Scene {
             for (let car of this.cars) {
                 car.update();
                 // head on collision with car here
-                if (car.x < -200) {
+                if (car.x + car.width < 0) {
                     this.cars.shift();
+                    car.destroy();
                 }
             }
 

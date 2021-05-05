@@ -7,7 +7,11 @@ let config = {
         default: "arcade",
         arcade: {
             debug: true,
-            gravity: { y: 1450 }
+            gravity: { y: 1450 },
+            checkCollision: {
+                left: false,
+                right: false
+            }
         }
     }
 };
