@@ -50,11 +50,6 @@ class Play extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-        this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,1);
-        // TODO: Get the player spritesheet / animated player working with the Player.js class
-        // currently the player does not jump or animate
-
-
         //load pigeon sprites
         this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly');
         this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly');
@@ -63,6 +58,16 @@ class Play extends Phaser.Scene {
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
 
         //animation configuration
+
+        //player animations
+        this.anims.create({
+            key: 'playerRun',
+            frames: this.anims.generateFrameNumbers('baker_run', {start: 0, end: 9, first:0}),
+            frameRate: 20,
+            repeat: -1
+        });
+
+        //vehicle animations
         this.anims.create({
             key: 'driving1',
             frames: this.anims.generateFrameNumbers('vehicle1_blue', {start: 0, end: 2, first: 0}),
@@ -142,6 +147,9 @@ class Play extends Phaser.Scene {
 
         // array of vehicle heights
         this.vehicleWidthArray = new Array(250, 260);
+
+        // create player
+        this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,1);
 
         // array of animations
 
