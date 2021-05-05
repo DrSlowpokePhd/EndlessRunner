@@ -136,10 +136,10 @@ class Play extends Phaser.Scene {
         this.pigeon1.anims.play('flying');
 
         // array of vehicle heights
-        this.vehicleHeightArray = new Array(140, 140, 300);
+        this.vehicleHeightArray = new Array(140, 140);
 
         // array of vehicle heights
-        this.vehicleWidthArray = new Array(250, 260, 650);
+        this.vehicleWidthArray = new Array(250, 260);
 
         // array of animations
 
@@ -154,11 +154,14 @@ class Play extends Phaser.Scene {
         this.vehicle3AnimArray = new Array('driving7','driving8','driving9');
 
         // array of which vehicle
-        this.vehicleType = new Array(this.vehicle1Array, this.vehicle2Array, this.vehicle3Array);
-        this.vehicleTypeAnim = new Array(this.vehicle1AnimArray, this.vehicle2AnimArray, this.vehicle3AnimArray);
+        this.vehicleType = new Array(this.vehicle1Array, this.vehicle2Array);
+        this.vehicleTypeAnim = new Array(this.vehicle1AnimArray, this.vehicle2AnimArray);
 
-        // array of cars
+        // array of small cars
         this.cars = [];
+
+        // array of trucks
+        this.trucks = [];
 
         // collider between player and world boundaries
         this.physics.world.on('worldbounds', (body) => {
@@ -174,9 +177,9 @@ class Play extends Phaser.Scene {
             this.falling = this.add.text(0, this.playerPosText.height * 4, ' ');
         }
 
-        //create cars
+        //create small cars
         let timer = this.time.addEvent({
-            delay: 1000,
+            delay: 1100,
             callback: () => {
                 //Find which type of vehicle
                 //Random number for type of vehicle
@@ -199,6 +202,25 @@ class Play extends Phaser.Scene {
                 newcar.anims.play(this.vehicleTypeAnim[this.randomInt][this.randomInt2]);
 
                 this.cars.push(newcar);
+            }, 
+            loop: true
+        });
+
+        // create big trucks
+        let timer2 = this.time.addEvent({
+            delay: 3000,
+            callback: () => {
+                //Random number for the color of vehicle
+                this.randomInt3 = Math.floor(Math.random() * this.vehicle3Array.length);
+
+                //create car
+                let newcar = new Car(this, game.config.width + 650, game.config.height - 300, this.vehicle3Array[this.randomInt3]).setOrigin(0, 0);
+                this.add.existing(newcar);
+                
+                //Play animations
+                newcar.anims.play(this.vehicle3AnimArray[this.randomInt3]);
+
+                this.trucks.push(newcar);
             }, 
             loop: true
         });
@@ -262,7 +284,7 @@ class Play extends Phaser.Scene {
                     this.player.isJumping = false;
                 }
                 this.player.isFalling = false;
-            } else if (this.physics.world.collide(this.player, this.cars)) {
+            } else if (this.physics.world.collide(this.player, this.cars) || this.physics.world.collide(this.player, this.trucks)) {
                 this.player.inAir = false;
                 if (this.player.isJumping) {
                     this.player.isJumping = false;
@@ -283,6 +305,7 @@ class Play extends Phaser.Scene {
                 this.scene.restart();
             }
 
+            // update small cars
             for (let car of this.cars) {
                 car.update();
                 // head on collision with car here
@@ -294,6 +317,22 @@ class Play extends Phaser.Scene {
                 // car is removed after going out of bounds
                 if (car.x + car.width < 0) {
                     Phaser.Utils.Array.Remove(this.cars, car);
+                    car.destroy();
+                }
+            }
+
+            // update trucks
+            for (let car of this.trucks) {
+                car.update();
+                // head on collision with car here
+                if(car.x < this.player.x + this.player.width && car.y < this.player.y && car.x + car.width > this.player.x + this.player.width) {
+                    this.player.destroy();
+                    this.gameOver = true;
+                }
+
+                // car is removed after going out of bounds
+                if (car.x + car.width < 0) {
+                    Phaser.Utils.Array.Remove(this.trucks, car);
                     car.destroy();
                 }
             }
