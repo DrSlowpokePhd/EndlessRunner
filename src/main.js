@@ -46,7 +46,7 @@ let config = {
     physics: {
         default: "arcade",
         arcade: {
-            debug: true,
+            debug: false,
             gravity: { y: 1450 },
             checkCollision: {
                 left: false,
@@ -62,6 +62,8 @@ let game = new Phaser.Game(config);
 let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
 
-let keySPACE, keyLEFT, keyRIGHT;
+let keySPACE, keyLEFT, keyRIGHT, keyR;
+
+let highScore;
 
 let bgMusic;
