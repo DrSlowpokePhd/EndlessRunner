@@ -15,9 +15,15 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.jumpRelease = true; // boolean to check if jump has been released
         scene.add.existing(this);
         scene.physics.add.existing(this);
-        this.setCollideWorldBounds(true);
-        this.onWorldBounds = true;
+        this.setCollideWorldBounds(true); // TODO: change collision behaviour to only collide with floor
+        // TODO: implement collision behavior with the LEFT side of cars = game over
+        // TODO: implement collision behavior with the TOP of cars = stand on top of cars
+        // TODO: implement collision behavior with ALL pigeons = game over (or life - 1)
+        
+        // this.onWorldBounds = true;
+        // see Car.js
         this.body.setImmovable;
+
     }
 
     update(time, delta) {
