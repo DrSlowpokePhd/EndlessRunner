@@ -150,6 +150,7 @@ class Play extends Phaser.Scene {
 
         // create player
         this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,1);
+        this.player.play('playerRun');
 
         // array of animations
 
