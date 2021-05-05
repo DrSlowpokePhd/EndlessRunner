@@ -29,7 +29,7 @@ class Play extends Phaser.Scene {
 
         // spritesheets for the characters
         this.load.spritesheet('baker_run', './Assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
-        this.load.spritesheet('pigeon_fly', './Assets/character_sprites/pigeon_sprite.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('pigeon_fly', './Assets/character_sprites/pigeon_sprite.png', {frameWidth: 75, frameHeight: 55, startFrame: 0, endFrame: 1});
             
         // load audio
         this.load.audio('jump_sfx', './Assets/sounds/endlessRunner_Jump.wav');
@@ -50,9 +50,9 @@ class Play extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-        //load pigeon sprites
-        this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly');
-        this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly');
+        this.pigeon1 = new Pigeon (this, 1300, 350, 'pigeon_fly');
+        this.pigeon2 = new Pigeon (this, 1300, 200, 'pigeon_fly');
+
 
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
