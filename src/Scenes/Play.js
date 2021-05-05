@@ -179,7 +179,7 @@ class Play extends Phaser.Scene {
 
         //create small cars
         let timer = this.time.addEvent({
-            delay: 1100,
+            delay: 1200,
             callback: () => {
                 //Find which type of vehicle
                 //Random number for type of vehicle
@@ -208,7 +208,7 @@ class Play extends Phaser.Scene {
 
         // create big trucks
         let timer2 = this.time.addEvent({
-            delay: 3000,
+            delay: 3500,
             callback: () => {
                 //Random number for the color of vehicle
                 this.randomInt3 = Math.floor(Math.random() * this.vehicle3Array.length);
