@@ -19,12 +19,16 @@ was it was a really natural switch from the previous style.
 Technology-wise the most interesting thing we did was probably implementing the parallax
 scrolling in the background, using 3 different scrolling images. We also made active use of
 GitHub and Discord with //TODO messages to each other, which was an interesting process.
+We used three scenes (Title, Menu, and Play) and transition between the Menu and Play scenes
+as the player plays through the game. 
 
 We also have moving objects with collisions that the player can stand on (cars), and also
 figured out random procedural generation using arrays. We also animated all of our sprites
-(player, car, pigeon) using Piskel and made our own SFX and music with MusicLab Songmaker
-(https://musiclab.chromeexperiments.com/Song-Maker/song/4594951638220800), and made UI 
-mockups in Illustrator, using two fonts under a non-commercial license.
+(player, car, pigeon) using Piskel and made our own SFX with bfxr (https://www.bfxr.net/)
+and music with MusicLab Songmaker
+(https://musiclab.chromeexperiments.com/Song-Maker/song/4594951638220800),
+and made UI mockups in Adobe Illustrator with two fonts downloaded off the internet
+under a non-commercial license.
 
 Fonts Used:
 Bread Rough by Staircase Studio [CC BY-NC 2.0]
