@@ -49,15 +49,9 @@ class Play extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-<<<<<<< HEAD
         this.pigeon1 = new Pigeon (this, 1300, 350, 'pigeon_fly');
         this.pigeon2 = new Pigeon (this, 1300, 200, 'pigeon_fly');
 
-=======
-        //load pigeon sprites
-        this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly').setOrigin(0,0);
-        this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly').setOrigin(0,0);
->>>>>>> 1d9bfac6810f77a7d56ebd09b043d11a036f1bd5
 
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);      
