@@ -25,6 +25,17 @@ class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update(time, delta) {
+        //left/right movement
+        if(keyLEFT.isDown && this.x >= this.width)
+        {
+            this.x -= 7;
+        } 
+        else if (keyRIGHT.isDown && this.x <= game.config.width - this.width)
+        {
+            this.x += 7;
+        }
+
+        //jump
         if (keySPACE.isDown) {
             if (!this.isJumping && !this.inAir && this.jumpRelease) { // initiate jump
                 this.isJumping = true;

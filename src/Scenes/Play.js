@@ -55,7 +55,9 @@ class Play extends Phaser.Scene {
         this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly');
 
         // configure input
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);      
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);    
 
         //animation configuration
 
@@ -360,11 +362,13 @@ class Play extends Phaser.Scene {
             }
 
             // update debug text
-            this.playerPosText.text = 'position: ' + this.player.x + ', ' + this.player.y;
-            this.playerIsJump.text = 'isJumping: ' + this.player.isJumping;
-            this.airText.text = 'inAir: ' + this.player.inAir;
-            this.falling.text = 'isFalling: ' + this.player.isFalling;
-            this.jRelease.text = 'jumpRelease: ' + this.player.jumpRelease;
+            if (this.debug) {
+                this.playerPosText.text = 'position: ' + this.player.x + ', ' + this.player.y;
+                this.playerIsJump.text = 'isJumping: ' + this.player.isJumping;
+                this.airText.text = 'inAir: ' + this.player.inAir;
+                this.falling.text = 'isFalling: ' + this.player.isFalling;
+                this.jRelease.text = 'jumpRelease: ' + this.player.jumpRelease;
+            }
         }
     }
 
