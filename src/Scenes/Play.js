@@ -57,7 +57,7 @@ class Play extends Phaser.Scene {
 
         //load pigeon sprites
         this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly');
-        this.pigeon2 = new Pigeon (this, 200, 200, 'pigeon_fly');
+        this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly');
 
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
