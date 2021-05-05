@@ -50,7 +50,7 @@ class Play extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-        this.player = new Player(this, game.config.width/2, game.config.height/2, 'baker_run');
+        this.player = new Player(this, game.config.width/2, game.config.height/2, 'baker_run').setOrigin(0,1);
         // TODO: Get the player spritesheet / animated player working with the Player.js class
         // currently the player does not jump or animate
 
@@ -171,8 +171,10 @@ class Play extends Phaser.Scene {
             this.playerIsJump = this.add.text(0, this.playerPosText.height, ' ');
             this.airText = this.add.text(0, this.playerPosText.height * 2, ' ');
             this.jRelease = this.add.text(0, this.playerPosText.height * 3, ' ');
+            this.falling = this.add.text(0, this.playerPosText.height * 4, ' ');
         }
 
+        //create cars
         let timer = this.time.addEvent({
             delay: 1000,
             callback: () => {
@@ -191,17 +193,18 @@ class Play extends Phaser.Scene {
 
                 //create car
                 let newcar = new Car(this, game.config.width + this.widthNum, game.config.height - this.heightNum, this.vehicleType[this.randomInt][this.randomInt2]).setOrigin(0, 0);
-                //let newcar = new Car(this, game.config.width + 650, game.config.height - 300, this.vehicleType[2][this.randomInt2]).setOrigin(0, 0);
                 this.add.existing(newcar);
                 
                 //Play animations
                 newcar.anims.play(this.vehicleTypeAnim[this.randomInt][this.randomInt2]);
-                //newcar.anims.play(this.vehicleTypeAnim[2][this.randomInt2]);
 
                 this.cars.push(newcar);
             }, 
             loop: true
         });
+
+        //GAME OVER flag
+        this.gameOver = false;
 
         let scoretimer = this.time.addEvent({
             delay: 100,
@@ -251,15 +254,21 @@ class Play extends Phaser.Scene {
             }
         } else {
             // check collisions
-            // check for collision between player and highway
-            
-            if (this.player.y === 675) {
+
+            // check for collision between player and platforms
+            if (this.player.y === game.config.height) {
                 this.player.inAir = false;
                 if (this.player.isJumping) {
                     this.player.isJumping = false;
                 }
                 this.player.isFalling = false;
-            } else {
+            } else if (this.physics.world.collide(this.player, this.cars)) {
+                this.player.inAir = false;
+                if (this.player.isJumping) {
+                    this.player.isJumping = false;
+                }
+                this.player.isFalling = false;
+            }else {
                 this.player.inAir = true;
             }
             // place all necessary update calls here
@@ -277,6 +286,12 @@ class Play extends Phaser.Scene {
             for (let car of this.cars) {
                 car.update();
                 // head on collision with car here
+                if(car.x < this.player.x + this.player.width && car.y < this.player.y && car.x + car.width > this.player.x + this.player.width) {
+                    this.player.destroy();
+                    this.gameOver = true;
+                }
+
+                // car is removed after going out of bounds
                 if (car.x + car.width < 0) {
                     Phaser.Utils.Array.Remove(this.cars, car);
                     car.destroy();
@@ -287,20 +302,8 @@ class Play extends Phaser.Scene {
             this.playerPosText.text = 'position: ' + this.player.x + ', ' + this.player.y;
             this.playerIsJump.text = 'isJumping: ' + this.player.isJumping;
             this.airText.text = 'inAir: ' + this.player.inAir;
+            this.falling.text = 'isFalling: ' + this.player.isFalling;
             this.jRelease.text = 'jumpRelease: ' + this.player.jumpRelease;
-        }
-    }
-    
-    checkCollision(rocket, ship) {
-        // collision detection taken from Rocket Patrol Tutorial
-        // simple AABB checking
-        if (rocket.x < ship.x + ship.width && 
-            rocket.x + rocket.width > ship.x && 
-            rocket.y < ship.y + ship.height &&
-            rocket.height + rocket.y > ship. y) {
-            return true;
-        } else {
-            return false;
         }
     }
 

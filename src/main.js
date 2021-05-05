@@ -1,3 +1,13 @@
+/*
+James Doherty
+Johnny Choi
+Marc Anthony Cervantes
+Nanxiang Wang
+-----------------------
+Bread Runner
+-----------------------
+*/
+
 let config = {
     type: Phaser.CANVAS,
     width: 1280,
