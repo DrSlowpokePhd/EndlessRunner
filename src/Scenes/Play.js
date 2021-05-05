@@ -50,7 +50,7 @@ class Play extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-        this.player = new Player(this, game.config.width/2, game.config.height/2, 'baker_run').setOrigin(0,1);
+        this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,1);
         // TODO: Get the player spritesheet / animated player working with the Player.js class
         // currently the player does not jump or animate
 
