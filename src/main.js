@@ -19,6 +19,8 @@ was it was a really natural switch from the previous style.
 Technology-wise the most interesting thing we did was probably implementing the parallax
 scrolling in the background, using 3 different scrolling images. We also made active use of
 GitHub and Discord with //TODO messages to each other, which was an interesting process.
+We used three scenes (Title, Menu, and Play) and transition between the Menu and Play scenes
+as the player plays through the game. 
 
 We also have moving objects with collisions that the player can stand on (cars), and also
 figured out random procedural generation using arrays. We also animated all of our sprites
