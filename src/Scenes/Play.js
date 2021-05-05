@@ -1,7 +1,6 @@
 class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
-        this.score = 0;
     }
 
     preload() {
@@ -37,7 +36,8 @@ class Play extends Phaser.Scene {
     }
 
     create() { 
-
+        this.score = 0;
+        
         //add music
         if(bgMusic == undefined) //prevent duplication
         {
@@ -56,7 +56,8 @@ class Play extends Phaser.Scene {
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);      
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);    
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);        
 
         //animation configuration
 
@@ -153,9 +154,7 @@ class Play extends Phaser.Scene {
         this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,0);
         this.player.play('playerRun');
 
-        // array of animations
-
-        // arrays of textures
+        // arrays of textures and animations
         this.vehicle1Array = new Array('vehicle1_blue','vehicle1_green','vehicle1_red');
         this.vehicle1AnimArray = new Array('driving1','driving2','driving3');
 
@@ -188,6 +187,21 @@ class Play extends Phaser.Scene {
             this.jRelease = this.add.text(0, this.playerPosText.height * 3, ' ');
             this.falling = this.add.text(0, this.playerPosText.height * 4, ' ');
         }
+
+        //score text
+        let scoreConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            }
+            // fixedWidth: 100
+        }
+        this.playerScoreText = this.add.text(game.config.width/2, 0, ' ', scoreConfig).setOrigin(0.5,0);
 
         //create small cars
         let timer = this.time.addEvent({
@@ -243,8 +257,11 @@ class Play extends Phaser.Scene {
         let scoretimer = this.time.addEvent({
             delay: 100,
             callback: () => {
-                this.score += 1;
+                if(!this.gameOver){
+                    this.score += 1;
+                }
             },
+            loop: true
         });
     }
 
@@ -269,6 +286,11 @@ class Play extends Phaser.Scene {
 
         // check key input for restart 
         if (this.gameOver) {
+            if(highScore == undefined || highScore < this.score)
+            {
+                highScore = this.score;
+            }
+
             let endConfig = {
                 fontFamily: 'Courier',
                 fontSize: '28px',
@@ -281,15 +303,14 @@ class Play extends Phaser.Scene {
                 }
                 // fixedWidth: 100
             }
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', endConfig).setOrigin(0.5, 0);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press SPACE to return to menu', endConfig).setOrigin(0.5, 0);
+            this.add.text(game.config.width/2, game.config.height/2 - 64, 'GAME OVER', endConfig).setOrigin(0.5, 0.5);
+            this.add.text(game.config.width/2, game.config.height/2, 'Highscore: ' + highScore, endConfig).setOrigin(0.5, 0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press R to return to menu', endConfig).setOrigin(0.5, 0.5);
         
-            if (this.gameOver && Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
                 this.scene.start("menuScene");
             }
         } else {
-            // check collisions
-
             // check for collision between player and platforms
             if (this.player.y === game.config.height - this.player.height) {
                 this.player.inAir = false;
@@ -306,13 +327,15 @@ class Play extends Phaser.Scene {
             }else {
                 this.player.inAir = true;
             }
+            
             // place all necessary update calls here
             if (!this.gameOver) {               
                 this.player.update();
-                // this.car.update();
-                // this.player.clearAlpha();
-                // this.car.clearAlpha();
+                    
+                //update score text
+                this.playerScoreText.text = 'Score: ' + this.score;
             }
+
             let keyR = this.input.keyboard.addKey('R');
             if (this.debug && keyR.isDown) {
                 this.scene.restart();
@@ -350,6 +373,7 @@ class Play extends Phaser.Scene {
                 }
             }
 
+            // check collision between player and pigeons
             if (this.checkCollision(this.player, this.pigeon1)) {
                 this.player.destroy();
                 this.gameOver = true;
