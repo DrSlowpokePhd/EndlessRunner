@@ -1,7 +1,6 @@
 class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
-        this.debug = true;
         this.score = 0;
     }
 
@@ -51,8 +50,8 @@ class Play extends Phaser.Scene {
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
         //load pigeon sprites
-        this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly');
-        this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly');
+        this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly').setOrigin(0,0);
+        this.pigeon2 = new Pigeon (this, 700, 200, 'pigeon_fly').setOrigin(0,0);
 
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);      
@@ -151,7 +150,7 @@ class Play extends Phaser.Scene {
         this.vehicleWidthArray = new Array(250, 260);
 
         // create player
-        this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,1);
+        this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,0);
         this.player.play('playerRun');
 
         // array of animations
@@ -292,7 +291,7 @@ class Play extends Phaser.Scene {
             // check collisions
 
             // check for collision between player and platforms
-            if (this.player.y === game.config.height) {
+            if (this.player.y === game.config.height - this.player.height) {
                 this.player.inAir = false;
                 if (this.player.isJumping) {
                     this.player.isJumping = false;
@@ -323,7 +322,7 @@ class Play extends Phaser.Scene {
             for (let car of this.cars) {
                 car.update();
                 // head on collision with car here
-                if(car.x < this.player.x + this.player.width && car.y < this.player.y && car.x + car.width > this.player.x + this.player.width) {
+                if(this.checkCollision(this.player, car)) {
                     this.player.destroy();
                     this.gameOver = true;
                 }
@@ -339,7 +338,7 @@ class Play extends Phaser.Scene {
             for (let car of this.trucks) {
                 car.update();
                 // head on collision with car here
-                if(car.x < this.player.x + this.player.width && car.y < this.player.y && car.x + car.width > this.player.x + this.player.width) {
+                if(this.checkCollision(this.player, car) ){
                     this.player.destroy();
                     this.gameOver = true;
                 }
@@ -376,12 +375,12 @@ class Play extends Phaser.Scene {
         this.player.inAir = false;
     }
 
-    checkCollision(player, pigeon) {
+    checkCollision(player, object) {
         // borrowed collision check from rocket patrol tutorial
-        if (player.x < pigeon.x + pigeon.width && 
-            player.x + player.width > pigeon.x && 
-            player.y < pigeon.y + pigeon.height &&
-            player.height + player.y > pigeon. y) {
+        if (player.x < object.x + object.width && 
+            player.x + player.width > object.x && 
+            player.y < object.y + object.height &&
+            player.height + player.y > object. y) {
                 return true;
         } else {
             return false;
