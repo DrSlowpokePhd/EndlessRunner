@@ -13,7 +13,7 @@ class Pigeon extends Phaser.GameObjects.Sprite {
         //if bird hits end of screen, reset to other side
         if(this.x <= 0 - this.width) {
             this.x = game.config.width;
-            this.y = Math.random() * (500 - 300) + 300;
+            this.y = Math.random() * (400 - 50) + 50;
         }
         // TODO: Implement spawning multiple pigeons at different heights instead of just resetting the 1
     }
