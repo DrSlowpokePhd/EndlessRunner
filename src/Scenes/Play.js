@@ -15,21 +15,21 @@ class Play extends Phaser.Scene {
         this.load.image('car', './Assets/ER-AmogusCar.png');
 
         // load all spritesheet files here for vehicles
-        this.load.spritesheet('vehicle1_blue', 'assets/vehicle_assets/vehicle1_blue.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('vehicle1_green', 'assets/vehicle_assets/vehicle1_green.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('vehicle1_red', 'assets/vehicle_assets/vehicle1_red.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle1_blue', './Assets/vehicle_assets/vehicle1_blue.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle1_green', './Assets/vehicle_assets/vehicle1_green.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle1_red', './Assets/vehicle_assets/vehicle1_red.png', {frameWidth: 250, frameHeight: 140, startFrame: 0, endFrame: 2});
 
-        this.load.spritesheet('vehicle2_blue', 'assets/vehicle_assets/vehicle2_blue.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('vehicle2_purple', 'assets/vehicle_assets/vehicle2_purple.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('vehicle2_white', 'assets/vehicle_assets/vehicle2_white.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle2_blue', './Assets/vehicle_assets/vehicle2_blue.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle2_purple', './Assets/vehicle_assets/vehicle2_purple.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('vehicle2_white', './Assets/vehicle_assets/vehicle2_white.png', {frameWidth: 260, frameHeight: 140, startFrame: 0, endFrame: 2});
 
-        this.load.spritesheet('rig_green', 'assets/vehicle_assets/bigrig_green.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('rig_red', 'assets/vehicle_assets/bigrig_red.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
-        this.load.spritesheet('rig_yellow', 'assets/vehicle_assets/bigrig_yellow.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('rig_green', './Assets/vehicle_assets/bigrig_green.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('rig_red', './Assets/vehicle_assets/bigrig_red.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
+        this.load.spritesheet('rig_yellow', './Assets/vehicle_assets/bigrig_yellow.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
 
         // spritesheets for the characters
-        this.load.spritesheet('baker_run', 'assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
-        this.load.spritesheet('pigeon_fly', 'assets/character_sprites/pigeon_sprite.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
+        this.load.spritesheet('baker_run', './Assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('pigeon_fly', './Assets/character_sprites/pigeon_sprite.png', {frameWidth: 100, frameHeight: 100, startFrame: 0, endFrame: 1});
             
         // load audio
         this.load.audio('jump_sfx', './Assets/sounds/endlessRunner_Jump.wav');
