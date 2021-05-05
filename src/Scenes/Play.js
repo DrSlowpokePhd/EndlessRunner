@@ -52,6 +52,7 @@ class Play extends Phaser.Scene {
 
         //load pigeon sprites
         this.pigeon1 = new Pigeon (this, 100, 350, 'pigeon_fly');
+        this.pigeon2 = new Pigeon (this, 200, 200, 'pigeon_fly');
 
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);          
@@ -139,6 +140,7 @@ class Play extends Phaser.Scene {
 
         //play pigeon animation
         this.pigeon1.anims.play('flying');
+        this.pigeon2.anims.play('flying');
 
         // array of vehicle heights
         this.vehicleHeightArray = new Array(140, 140);
@@ -261,6 +263,7 @@ class Play extends Phaser.Scene {
         this.background3.tilePositionX += 6;
 
         this.pigeon1.update();
+        this.pigeon2.update();
 
         // check key input for restart 
         if (this.gameOver) {
@@ -346,6 +349,11 @@ class Play extends Phaser.Scene {
             }
 
             if (this.checkCollision(this.player, this.pigeon1)) {
+                this.player.destroy();
+                this.gameOver = true;
+            }
+
+            if (this.checkCollision(this.player, this.pigeon2)) {
                 this.player.destroy();
                 this.gameOver = true;
             }

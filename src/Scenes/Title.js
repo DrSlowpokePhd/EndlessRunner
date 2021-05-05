@@ -46,7 +46,10 @@ class Title extends Phaser.Scene {
             },
             fixedWidth: 0
         }
-        this.add.text(game.config.width/2, game.config.height - 50, 'Press SPACE to start.', playtextConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height - 100, 'Press SPACE to start.', playtextConfig).setOrigin(0.5);
+
+        this.add.text(game.config.width/2, game.config.height - 50, 'Also use SPACE to jump.', playtextConfig).setOrigin(0.5);
+
 	
         // inputs
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
