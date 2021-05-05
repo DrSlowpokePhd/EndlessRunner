@@ -3,17 +3,22 @@ class Pigeon extends Phaser.GameObjects.Sprite {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);   //adds to existing scene
         //this.points = 1;   //stores pointValue
-        this.moveSpeed = 5;         //pixels per frame birds move at
+        this.moveSpeed = 3;         //pixels per frame birds move at
     }
 
     update() {
-        //birds move left
+        //birds move right
         this.x += this.moveSpeed;
 
         //if bird hits end of screen, reset to other side
-        if(this.x >= game.config.width + this.width) {
-            this.x = 0 - 50;
+        if(this.x >= 0 - this.width) {
+            this.x = game.config.width;
         }
+    }
+
+    reset() {
+        this.x = game.config.width + 50;
+        this.alpha = 1;
     }
 
     moveSpeedFast() {
@@ -21,4 +26,5 @@ class Pigeon extends Phaser.GameObjects.Sprite {
     }
 
     //all code here was borrowed from the Rocket Patrol Tutorial
+
 }
