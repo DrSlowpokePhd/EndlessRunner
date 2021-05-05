@@ -138,6 +138,9 @@ class Play extends Phaser.Scene {
         // array of vehicle heights
         this.vehicleHeightArray = new Array(140, 140, 300);
 
+        // array of vehicle heights
+        this.vehicleWidthArray = new Array(250, 260, 650);
+
         // array of animations
 
         // arrays of textures
@@ -183,12 +186,17 @@ class Play extends Phaser.Scene {
                 //Number for height of vehicle sprite
                 this.heightNum = this.vehicleHeightArray[this.randomInt];
 
+                //Number for width of vehicle sprite
+                this.widthNum = this.vehicleWidthArray[this.randomInt];
+
                 //create car
-                let newcar = new Car(this, game.config.width, game.config.height - this.heightNum, this.vehicleType[this.randomInt][this.randomInt2]).setOrigin(0, 0);
+                let newcar = new Car(this, game.config.width + this.widthNum, game.config.height - this.heightNum, this.vehicleType[this.randomInt][this.randomInt2]).setOrigin(0, 0);
+                //let newcar = new Car(this, game.config.width + 650, game.config.height - 300, this.vehicleType[2][this.randomInt2]).setOrigin(0, 0);
                 this.add.existing(newcar);
                 
                 //Play animations
                 newcar.anims.play(this.vehicleTypeAnim[this.randomInt][this.randomInt2]);
+                //newcar.anims.play(this.vehicleTypeAnim[2][this.randomInt2]);
 
                 this.cars.push(newcar);
             }, 
@@ -270,7 +278,7 @@ class Play extends Phaser.Scene {
                 car.update();
                 // head on collision with car here
                 if (car.x + car.width < 0) {
-                    this.cars.shift();
+                    Phaser.Utils.Array.Remove(this.cars, car);
                     car.destroy();
                 }
             }
