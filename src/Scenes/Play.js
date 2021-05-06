@@ -270,6 +270,12 @@ class Play extends Phaser.Scene {
     }
 
     update() {
+        //check if highscore has number
+        if(highScore == undefined)
+        {
+            highScore = 0;
+        }
+
          //check if music is playing
          if(!bgMusic.isPlaying)
          {
@@ -367,7 +373,7 @@ class Play extends Phaser.Scene {
                 }
                     
                 //update score text
-                this.playerScoreText.text = 'Score: ' + this.score;
+                this.playerScoreText.text = 'Score: ' + this.score + ' | Highscore: ' + highScore;
             }
 
             let keyR = this.input.keyboard.addKey('R');
