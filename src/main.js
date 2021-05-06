@@ -17,10 +17,15 @@ a cabal of evil seagulls (now pigeons). We really liked this wacky, zany visual 
 was it was a really natural switch from the previous style.
 --------------------------------------------------------------------------------------------
 Technology-wise the most interesting thing we did was probably implementing the parallax
-scrolling in the background, using 3 different scrolling images. We also made active use of
-GitHub and Discord with //TODO messages to each other, which was an interesting process.
-We used three scenes (Title, Menu, and Play) and transition between the Menu and Play scenes
-as the player plays through the game. 
+scrolling in the background, using 3 different scrolling images (Play.js "background scrolling").
+This, along with the cars going by to the left, and the player character's walking animation,
+makes it look like the player character is going really fast even though the player character's
+X-position does not change.
+
+We also made active use of GitHub and Discord with //TODO messages to each other, which was
+an interesting process. We used three scenes (Title, Menu, and Play) and transition between
+the Menu and Play scenes after each game over, and gave the player a way to make some sort
+of progress with purchasable power-ups. 
 
 We also have moving objects with collisions that the player can stand on (cars), and also
 figured out random procedural generation using arrays. We also animated all of our sprites
