@@ -43,19 +43,20 @@ own SFX with bfxr, and made our own background music with MusicLab Songmaker. Th
 UI mockups made in Adobe Illustrator then ported over. We used two fonts that we did not make,
 under a non-commercial license.
 
-Links:
-Piskel (animations)
-    https://www.piskelapp.com/
-bfxr (SFX)
-    https://www.bfxr.net/
-MusicLab SongMaker (background music)
-    https://musiclab.chromeexperiments.com/Song-Maker/song/4594951638220800
+Resources:
+    Piskel (animations)
+        https://www.piskelapp.com/
+    bfxr (SFX)
+        https://www.bfxr.net/
+    MusicLab SongMaker (background music)
+        https://musiclab.chromeexperiments.com/Song-Maker/song/4594951638220800
+
 
 Fonts Used:
-Bread Rough by Staircase Studio [CC BY-NC 2.0]
-    (https://www.fontspace.com/bread-font-f46829)
-bread and circus by Nishat Firoj [Non-Commercial Shareware]
-    (https://www.fontspace.com/bread-and-circus-font-f19828)
+    Bread Rough by Staircase Studio [CC BY-NC 2.0]
+        (https://www.fontspace.com/bread-font-f46829)
+    bread and circus by Nishat Firoj [Non-Commercial Shareware]
+        (https://www.fontspace.com/bread-and-circus-font-f19828)
 
 */
 
