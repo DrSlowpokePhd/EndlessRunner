@@ -22,18 +22,34 @@ This, along with the cars going by to the left, and the player character's walki
 makes it look like the player character is going really fast even though the player character's
 X-position does not change.
 
+Something else interesting was having our obstacles also be platforms that the player
+can stand on (the cars). This was a unique challenge, because we had to put a collision behavior
+at the side of the car for player damage and another one at the top of the car that just let
+the player stand on top of it.
+
+We also made the cars and pigeons randomly generate and tweaked the difficulty with testing
+so that the player isn't put in too many unfair situations. Issues that we corrected included
+bigrigs being taller than the jump height, bigrigs spawning with pigeons so the player had no out,
+cars spawning too close together to the point where a jump would make you sail over a car but
+collide with the next.
+
 We also made active use of GitHub and Discord with //TODO messages to each other, which was
 an interesting process. We used three scenes (Title, Menu, and Play) and transition between
 the Menu and Play scenes after each game over, and gave the player a way to make some sort
-of progress with purchasable power-ups. 
+of progress with purchasable power-ups.
 
-We also have moving objects with collisions that the player can stand on (cars), and also
-figured out random procedural generation using arrays. We also animated all of our sprites
-(player, car, pigeon) using Piskel and made our own SFX with bfxr (https://www.bfxr.net/)
-and music with MusicLab Songmaker
-(https://musiclab.chromeexperiments.com/Song-Maker/song/4594951638220800),
-and made UI mockups in Adobe Illustrator with two fonts downloaded off the internet
+We also made most of our own assets. We animated all of our sprites using Piskel, made our
+own SFX with bfxr, and made our own background music with MusicLab Songmaker. There were also
+UI mockups made in Adobe Illustrator then ported over. We used two fonts that we did not make,
 under a non-commercial license.
+
+Links:
+Piskel (animations)
+    https://www.piskelapp.com/
+bfxr (SFX)
+    https://www.bfxr.net/
+MusicLab SongMaker (background music)
+    https://musiclab.chromeexperiments.com/Song-Maker/song/4594951638220800
 
 Fonts Used:
 Bread Rough by Staircase Studio [CC BY-NC 2.0]
