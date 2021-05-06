@@ -26,7 +26,7 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('rig_yellow', './Assets/vehicle_assets/bigrig_yellow.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
 
         // spritesheets for the characters
-        this.load.spritesheet('baker_run', './Assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('baker_run', './Assets/character_sprites/baker_sprite.png', {frameWidth: 80, frameHeight: 150, startFrame: 0, endFrame: 9});
         this.load.spritesheet('pigeon_fly', './Assets/character_sprites/pigeon_sprite.png', {frameWidth: 75, frameHeight: 55, startFrame: 0, endFrame: 1});
             
         // load audio
@@ -276,14 +276,6 @@ class Play extends Phaser.Scene {
              bgMusic.play();
          }
 
-        //background scrolling
-        this.background1.tilePositionX += 2;
-        this.background2.tilePositionX += 4;
-        this.background3.tilePositionX += 6;
-
-        this.pigeon1.update();
-        this.pigeon2.update();
-
         // check key input for restart 
         if (this.gameOver) {
             if(highScore == undefined || highScore < this.score)
@@ -329,8 +321,50 @@ class Play extends Phaser.Scene {
             }
             
             // place all necessary update calls here
-            if (!this.gameOver) {               
+            if (!this.gameOver) {   
+                //background scrolling
+                this.background1.tilePositionX += 2;
+                this.background2.tilePositionX += 4;
+                this.background3.tilePositionX += 6;
+
+                //update player            
                 this.player.update();
+
+                //update pigeons
+                this.pigeon1.update();
+                this.pigeon2.update();
+
+                // update small cars
+                for (let car of this.cars) {
+                    car.update();
+                    // head on collision with car here
+                    if(this.checkCollision(this.player, car)) {
+                        this.player.destroy();
+                        this.gameOver = true;
+                    }
+
+                    // car is removed after going out of bounds
+                    if (car.x + car.width < 0) {
+                        Phaser.Utils.Array.Remove(this.cars, car);
+                        car.destroy();
+                    }
+                }
+
+                // update trucks
+                for (let car of this.trucks) {
+                    car.update();
+                    // head on collision with car here
+                    if(this.checkCollision(this.player, car) ){
+                        this.player.destroy();
+                        this.gameOver = true;
+                    }
+
+                    // car is removed after going out of bounds
+                    if (car.x + car.width < 0) {
+                        Phaser.Utils.Array.Remove(this.trucks, car);
+                        car.destroy();
+                    }
+                }
                     
                 //update score text
                 this.playerScoreText.text = 'Score: ' + this.score;
@@ -341,37 +375,6 @@ class Play extends Phaser.Scene {
                 this.scene.restart();
             }
 
-            // update small cars
-            for (let car of this.cars) {
-                car.update();
-                // head on collision with car here
-                if(this.checkCollision(this.player, car)) {
-                    this.player.destroy();
-                    this.gameOver = true;
-                }
-
-                // car is removed after going out of bounds
-                if (car.x + car.width < 0) {
-                    Phaser.Utils.Array.Remove(this.cars, car);
-                    car.destroy();
-                }
-            }
-
-            // update trucks
-            for (let car of this.trucks) {
-                car.update();
-                // head on collision with car here
-                if(this.checkCollision(this.player, car) ){
-                    this.player.destroy();
-                    this.gameOver = true;
-                }
-
-                // car is removed after going out of bounds
-                if (car.x + car.width < 0) {
-                    Phaser.Utils.Array.Remove(this.trucks, car);
-                    car.destroy();
-                }
-            }
 
             // check collision between player and pigeons
             if (this.checkCollision(this.player, this.pigeon1)) {
