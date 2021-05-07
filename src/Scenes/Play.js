@@ -26,7 +26,7 @@ class Play extends Phaser.Scene {
         this.load.spritesheet('rig_yellow', './Assets/vehicle_assets/bigrig_yellow.png', {frameWidth: 650, frameHeight: 300, startFrame: 0, endFrame: 2});
 
         // spritesheets for the characters
-        this.load.spritesheet('baker_run', './Assets/character_sprites/baker_sprite.png', {frameWidth: 110, frameHeight: 150, startFrame: 0, endFrame: 9});
+        this.load.spritesheet('baker_run', './Assets/character_sprites/baker_sprite.png', {frameWidth: 80, frameHeight: 150, startFrame: 0, endFrame: 9});
         this.load.spritesheet('pigeon_fly', './Assets/character_sprites/pigeon_sprite.png', {frameWidth: 75, frameHeight: 55, startFrame: 0, endFrame: 1});
             
         // load audio
