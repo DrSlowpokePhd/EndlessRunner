@@ -38,6 +38,7 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         //jump
         if (keySPACE.isDown) {
             if (!this.isJumping && !this.inAir && this.jumpRelease) { // initiate jump
+                jumpSound.play();
                 this.isJumping = true;
                 this.jumpRelease = false;
                 this.setVelocity(0, -1 * this.jumpStep);

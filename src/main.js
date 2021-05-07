@@ -66,4 +66,4 @@ let keySPACE, keyLEFT, keyRIGHT, keyR;
 
 let highScore;
 
-let bgMusic;
+let bgMusic, jumpSound;

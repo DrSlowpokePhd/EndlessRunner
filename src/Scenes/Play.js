@@ -44,13 +44,23 @@ class Play extends Phaser.Scene {
             bgMusic = this.sound.add('background_music');
         }
 
+        //add jumpSound
+        if(jumpSound == undefined) //prevent duplication
+        {
+            jumpSound = this.sound.add('jump_sfx');
+        }
+
         // background
         this.background1 = this.add.tileSprite(0, 0, 1280, 720, 'background_back').setOrigin(0, 0);
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-        this.pigeon1 = new Pigeon (this, 1300, 350, 'pigeon_fly');
-        this.pigeon2 = new Pigeon (this, 1300, 200, 'pigeon_fly');
+        // create pigeons
+        this.pigeonHeight1 = Math.random() * (300) + 50;
+        this.pigeonHeight2 = Math.random() * (300) + 50;
+
+        this.pigeon1 = new Pigeon (this, game.config.width*2 + 75, this.pigeonHeight1, 'pigeon_fly');
+        this.pigeon2 = new Pigeon (this, game.config.width*2 + 750, this.pigeonHeight2, 'pigeon_fly');
 
 
         // configure input
@@ -345,6 +355,7 @@ class Play extends Phaser.Scene {
                     car.update();
                     // head on collision with car here
                     if(this.checkCollision(this.player, car)) {
+                        this.sound.play('hit_sfx');
                         this.player.destroy();
                         this.gameOver = true;
                     }
@@ -361,6 +372,7 @@ class Play extends Phaser.Scene {
                     car.update();
                     // head on collision with car here
                     if(this.checkCollision(this.player, car) ){
+                        this.sound.play('hit_sfx');
                         this.player.destroy();
                         this.gameOver = true;
                     }
@@ -384,11 +396,13 @@ class Play extends Phaser.Scene {
 
             // check collision between player and pigeons
             if (this.checkCollision(this.player, this.pigeon1)) {
+                this.sound.play('hit_sfx');
                 this.player.destroy();
                 this.gameOver = true;
             }
 
             if (this.checkCollision(this.player, this.pigeon2)) {
+                this.sound.play('hit_sfx');
                 this.player.destroy();
                 this.gameOver = true;
             }
