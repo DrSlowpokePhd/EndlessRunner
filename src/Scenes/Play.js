@@ -55,14 +55,6 @@ class Play extends Phaser.Scene {
         this.background2 = this.add.tileSprite(0, 0, 1280, 720, 'background_middle').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 1280, 720, 'background_front').setOrigin(0, 0);
 
-        // create pigeons
-        this.pigeonHeight1 = Math.random() * (300) + 50;
-        this.pigeonHeight2 = Math.random() * (300) + 50;
-
-        this.pigeon1 = new Pigeon (this, game.config.width*2 + 75, this.pigeonHeight1, 'pigeon_fly');
-        this.pigeon2 = new Pigeon (this, game.config.width*2 + 750, this.pigeonHeight2, 'pigeon_fly');
-
-
         // configure input
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);      
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -146,19 +138,34 @@ class Play extends Phaser.Scene {
         this.anims.create({
             key: 'flying',
             frames: this.anims.generateFrameNumbers('pigeon_fly', {start: 0, end: 1, first: 0}), 
-            framerate: 2, 
+            framerate: 5, 
             repeat: -1,
         });
-
-        //play pigeon animation
-        this.pigeon1.anims.play('flying');
-        this.pigeon2.anims.play('flying');
 
         // array of vehicle heights
         this.vehicleHeightArray = new Array(140, 140);
 
         // array of vehicle heights
         this.vehicleWidthArray = new Array(250, 260);
+
+        // create pigeons
+        this.pigeon1 = null;
+        this.pigeon2 = null;
+
+        let pigeonDelay = this.time.addEvent({
+            delay: 15000,
+            callback: () => {
+                this.pigeonHeight1 = Math.random() * (250) + 50;
+                this.pigeonHeight2 = Math.random() * (250) + 50;
+
+                this.pigeon1 = new Pigeon (this, game.config.width*2 + 75, this.pigeonHeight1, 'pigeon_fly');
+                this.pigeon2 = new Pigeon (this, game.config.width*2 + 750, this.pigeonHeight2, 'pigeon_fly');
+
+                //play pigeon animation
+                this.pigeon1.anims.play('flying');
+                this.pigeon2.anims.play('flying');
+            }
+        });
 
         // create player
         this.player = new Player(this, game.config.width/2 - 100, game.config.height/2, 'baker_run').setOrigin(0,0);
@@ -347,8 +354,10 @@ class Play extends Phaser.Scene {
                 this.player.update();
 
                 //update pigeons
-                this.pigeon1.update();
-                this.pigeon2.update();
+                if (this.pigeon1 != undefined && this.pigeon2 != undefined) {
+                    this.pigeon1.update();
+                    this.pigeon2.update();
+                }
 
                 // update small cars
                 for (let car of this.cars) {
@@ -424,13 +433,16 @@ class Play extends Phaser.Scene {
 
     checkCollision(player, object) {
         // borrowed collision check from rocket patrol tutorial
-        if (player.x < object.x + object.width && 
-            player.x + player.width > object.x && 
-            player.y < object.y + object.height &&
-            player.height + player.y > object. y) {
-                return true;
-        } else {
-            return false;
+        // checks that object exists
+        if(object != undefined) {
+            if (player.x < object.x + object.width && 
+                player.x + player.width > object.x && 
+                player.y < object.y + object.height &&
+                player.height + player.y > object. y) {
+                    return true;
+            } else {
+                return false;
+            }
         }
     }
 
